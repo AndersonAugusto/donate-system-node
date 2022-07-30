@@ -40,8 +40,12 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+.env
+package.json
+package-lock.json
+yarn.lock
 
-# TypeScript v1 declaration files
+# Ty'eScript v1 declaration files
 typings/
 
 # TypeScript cache
