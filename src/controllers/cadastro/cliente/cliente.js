@@ -46,7 +46,12 @@ const insereCliente = async (req, res, next) => {
         const infoCliente = {
             login: data.login,
             senha: data.senha,
-            idPermissao: data.idPermissao
+            nome: data.nome,
+            telefone: data.telefone,
+            email: data.email,
+            cpf: data.cpf,
+            genero: data.genero,
+            dataNascimento: data.dataNascimento
         }
 
         const cliente = await clienteData.findOne({ where: { login: data.login }})

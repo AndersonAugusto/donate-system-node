@@ -12,6 +12,8 @@ router.get('/login' , loginController.login)
 
 //usuario
 router.get('/usuario' , usuarioController.usuario)
+router.post('/insereUsuario' , usuarioController.insereUsuario)
+
 
 //cliente
 router.get('/cliente' , clienteController.cliente)

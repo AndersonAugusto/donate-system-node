@@ -1,7 +1,5 @@
 "use strict"
 
-require('dotenv').config()
-require('./database')
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
@@ -23,11 +21,11 @@ app.use((req, res, next) => {
 
 
 const PORT = process.env.port || 3000
+
 app.use(router)
 
 app.listen(PORT, () => {
     console.log(`Aplicação sendo executada na porta localhost:${PORT}`)
 })
-
 
 module.exports = app
