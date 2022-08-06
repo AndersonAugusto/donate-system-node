@@ -15,8 +15,8 @@ router.get('/usuario' , usuarioController.usuario)
 router.post('/usuario' , usuarioController.insereUsuario)
 
 //cliente
-router.get('/cliente' , clienteController.cliente)
 router.get('/clientes' , clienteController.clientes)
+router.get('/cliente' , clienteController.cliente)
 router.post('/cliente' , clienteController.insereCliente)
 router.put('/cliente' , clienteController.atualizaCliente)
 router.delete('/cliente' , clienteController.deletaCliente)
