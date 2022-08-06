@@ -12,14 +12,13 @@ router.get('/login' , loginController.login)
 
 //usuario
 router.get('/usuario' , usuarioController.usuario)
-router.post('/insereUsuario' , usuarioController.insereUsuario)
-
+router.post('/usuario' , usuarioController.insereUsuario)
 
 //cliente
 router.get('/cliente' , clienteController.cliente)
 router.get('/clientes' , clienteController.clientes)
 router.post('/cliente' , clienteController.insereCliente)
-// router.update('/cliente' , clienteController.atualizaCliente)
+router.put('/cliente' , clienteController.atualizaCliente)
 router.delete('/cliente' , clienteController.deletaCliente)
 
 
