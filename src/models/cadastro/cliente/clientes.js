@@ -13,8 +13,12 @@ const clientes = database.define('clientes' , {
         allowNull: false
     },
     senha: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(200),
         allowNull: false
+    },
+    token: {
+        type: Sequelize.STRING(200),
+        allowNull: true
     },
     nome: {
         type: Sequelize.STRING(50),
@@ -46,7 +50,6 @@ const clientes = database.define('clientes' , {
     },
     bitAtivo: {
         type: Sequelize.INTEGER,
-        // allowNull: true,
         defaultValue: 1
     }
 })

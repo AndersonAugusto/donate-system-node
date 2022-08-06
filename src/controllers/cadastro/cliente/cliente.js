@@ -1,11 +1,11 @@
 "use strict"
 
 const database = require('../../../../database')
+const bcrypt = require('bcrypt');
 const clienteData = require('../../../models/cadastro/cliente/clientes')
 
 const clientes = async (req, res, next) => {
     try {
-        await database.sync()
 
         const clientes = await clienteData.findAll();
 
@@ -47,13 +47,20 @@ const cliente = async (req, res, next) => {
 
 const insereCliente = async (req, res, next) => {
     try {
-        await database.sync()
-
+        // await clienteData.sync({alter : true})
         const data = req.body
+
+        if(!data.senha || !data.login){
+            return res.status(422).send({Message:'Login e senha são obrigatórios.'})
+        }
+
+        //CREATE HASH PASSWORD
+        const salt = await bcrypt.genSalt(12)
+        const passwordHash = await bcrypt.hash(data.senha , salt)
 
         const infoCliente = {
             login: data.login,
-            senha: data.senha,
+            senha: passwordHash,
             nome: data.nome,
             telefone: data.telefone,
             email: data.email,
@@ -65,6 +72,7 @@ const insereCliente = async (req, res, next) => {
         const cliente = await clienteData.findOne({ where: { login: data.login }})
 
         if(!cliente){
+              await clienteData.save()
               await clienteData.create(infoCliente)
         } else {
             return res.status(400).send({ message: 'Cliente já cadastrado' })
