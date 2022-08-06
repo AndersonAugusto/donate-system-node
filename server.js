@@ -21,12 +21,12 @@ app.use((req, res, next) => {
 })
 
 
-const PORT = process.env.port || 3000
+const port = process.env.PORT || 3000
 
 app.use(router)
 
-app.listen(PORT, () => {
-    console.log(`Aplicação sendo executada na porta localhost:${PORT}`)
+app.listen(port, () => {
+    console.log(`Aplicação sendo executada na porta localhost:${port}`)
 })
 
 module.exports = app
