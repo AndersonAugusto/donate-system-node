@@ -22,10 +22,18 @@ const clientes = async (req, res, next) => {
 const cliente = async (req, res, next) => {
     try {
         await database.sync()
-
         const idCliente = req.query.idCliente
         
-        const cliente = await clienteData.findByPk(idCliente)
+        if(!idCliente){
+            return res.status(400).send({ Message: 'Parâmetro idCliente não encontrado' })
+        }
+        
+        const cliente = await clienteData.findOne( { where: {idCliente: idCliente }})
+
+
+        if(!cliente){
+            return res.status(200).send({ Message: 'Cliente não encontrado no banco' })
+        }
 
         res.status(200).send({
             message:'Sucesso.',
@@ -76,11 +84,27 @@ const insereCliente = async (req, res, next) => {
 
 const atualizaCliente = async (req, res, next) => {
     try {
-        await database.sync()
+        const data = req.body
 
+        const cliente = await clienteData.findOne( { where: {idCliente: data.idCliente }})
 
-        res.status(200).send({
-            message:'Sucesso.'
+        if(!cliente){
+            return res.status(400).send({ Message: 'Cliente não encontrado' })
+        }
+
+        cliente.login = data.login
+        cliente.senha = data.senha
+        cliente.telefone = data.telefone
+        cliente.email = data.email
+        cliente.cpf = data.cpf
+        cliente.genero = data.genero
+        cliente.dataNascimento = data.dataNascimento
+        await cliente.save()
+        
+
+        return res.status(200).send({
+            message:'Cliente atualizado.',
+            cliente
         })
 
     }catch(error){
@@ -90,14 +114,22 @@ const atualizaCliente = async (req, res, next) => {
 
 const deletaCliente = async (req, res, next) => {
     try {
-        await database.sync()
+        const idCliente = req.query.idCliente
 
+        const cliente = await clienteData.findOne({where: {idCliente: idCliente}})
 
-        res.status(200).send({
-            message:'Sucesso.'
-        })
+        if(!cliente){
+            return res.status(400).send({Message: 'Cliente não encontrado'})
+        } else {
 
-    }catch(error){
+            await clienteData.destroy({where: {idCliente: idCliente}})
+    
+           return res.status(200).send({
+                message:'Cliente deletado!.',
+                cliente
+            })
+        }
+    } catch(error){
         return res.status(500).send({error: error.message})
     }
 }
