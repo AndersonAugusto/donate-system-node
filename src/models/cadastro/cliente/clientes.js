@@ -16,25 +16,37 @@ const clientes = database.define('clientes' , {
         type: Sequelize.STRING(50),
         allowNull: false
     },
-    idPermissao: {
-        type: Sequelize.INTEGER,
-        allowNull: true
+    nome: {
+        type: Sequelize.STRING(50),
+        allowNull: false
     },
-    token: {
+    IdPermissao: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
+    cpf: {
+        type: Sequelize.STRING(50),
+        allowNull: false
+    },
+    email: {
         type: Sequelize.STRING(50),
         allowNull: true
     },
-    bitOnline: {
+    telefone: {
         type: Sequelize.STRING(20),
         allowNull: true
     },
-    cadastradoem: {
-        type: Sequelize.STRING(20),
+    genero: {
+        type: Sequelize.STRING(2),
+        allowNull: false
+    },
+    dataNascimento: {
+        type: Sequelize.DATE,
         allowNull: true
     },
     bitAtivo: {
-        type: Sequelize.TINYINT(1),
-        allowNull: true,
+        type: Sequelize.INTEGER,
+        // allowNull: true,
         defaultValue: 1
     }
 })
