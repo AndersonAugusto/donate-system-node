@@ -55,3 +55,4 @@ const clientes = database.define('clientes' , {
 })
 
 module.exports = clientes
+

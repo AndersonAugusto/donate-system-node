@@ -25,7 +25,7 @@ const insereUsuario = async(req , res , next) => {
             dataNascimento: data.dataNascimento
         }
         
-        await database.sync()
+        await usuariosData.sync()
         const usuario = await usuariosData.create(infoUsuario)
 
         return res.status(200).send({
