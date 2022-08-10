@@ -8,7 +8,7 @@ exports.required = (req, res , next) => {
     try {
         const tokenHeader = req.headers['authorization']
         const token = tokenHeader && tokenHeader.split(' ')[1] 
-        
+  
         if(!token) return res.status(401).send({auth: false , Message: 'Token não encontrado'})
 
         const secret = process.env.SECRET

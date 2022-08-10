@@ -8,7 +8,7 @@ const login = async(req , res , next) => {
     try {
         const {login , senha} = req.body
 
-        const cliente = await clienteData.findOne( { where: {login: login }})
+        const cliente = await clienteData.findOne({ where: {login: login }})
         const idCliente = cliente.dataValues.idCliente
 
         if(!cliente) res.status(404).send({Message:'Usuario não encontrado'})
@@ -18,12 +18,9 @@ const login = async(req , res , next) => {
         if(!checkPassword){
             return res.status(422).send({Message: 'Senha inválida'})
         }
-
-        const secret = process.env.SECRET
-        
         const token = jwt.sign({
             id: idCliente
-        }, secret)
+         }, process.env.SECRET , { expiresIn: '24h' })
 
         return res.status(200).send({ Message: 'Logado com sucesso!', token });
         

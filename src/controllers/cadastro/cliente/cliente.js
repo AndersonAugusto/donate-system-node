@@ -8,8 +8,8 @@ const clientes = async (req, res, next) => {
     try {
 
         const clientes = await clienteData.findAll();
-
-        res.status(200).send({
+        
+        return res.status(200).send({
             message:'Sucesso clientes',
             clientes
         })
@@ -72,7 +72,6 @@ const insereCliente = async (req, res, next) => {
         const cliente = await clienteData.findOne({ where: { login: data.login }})
 
         if(!cliente){
-              await clienteData.save()
               await clienteData.create(infoCliente)
         } else {
             return res.status(400).send({ message: 'Cliente já cadastrado' })
