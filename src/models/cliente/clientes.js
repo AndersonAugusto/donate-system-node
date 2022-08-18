@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const database = require('../../../../database')
+const database = require('../../../database')
 
 const clientes = database.define('clientes' , {
     idCliente: {
@@ -42,14 +42,42 @@ const clientes = database.define('clientes' , {
     },
     genero: {
         type: Sequelize.STRING(2),
-        allowNull: false
+        allowNull: true
     },
     dataNascimento: {
+        type: Sequelize.STRING(15),
+        allowNull: true
+    },
+    fotoPerfil: {
+        type: Sequelize.STRING(100),
+        allowNull: true
+    },
+    saldoCarteira: {
+        type: Sequelize.STRING(30),
+        allowNull: true
+    },
+    sobreMim: {
+        type: Sequelize.STRING(200),
+        allowNull: true
+    },
+    necessidades: {
+        type: Sequelize.STRING(200),
+        allowNull: true
+    },
+    dataCadastro: {
         type: Sequelize.DATE,
         allowNull: true
     },
+    bitUsuarioSeguro: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true
+    },
+    bitResponsabilidade: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+    },
     bitAtivo: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BOOLEAN,
         defaultValue: 1
     }
 })
