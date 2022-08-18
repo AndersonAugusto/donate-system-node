@@ -1,16 +1,14 @@
 "use strict"
 
-const database = require('../../../../database')
+const database = require('../../../database')
 const bcrypt = require('bcrypt');
-const clienteData = require('../../../models/cadastro/cliente/clientes')
+const clienteData = require('../../models/cliente/clientes')
 
 const clientes = async (req, res, next) => {
     try {
-
         const clientes = await clienteData.findAll();
         
         return res.status(200).send({
-            message:'Sucesso clientes',
             clientes
         })
 
@@ -66,7 +64,8 @@ const insereCliente = async (req, res, next) => {
             email: data.email,
             cpf: data.cpf,
             genero: data.genero,
-            dataNascimento: data.dataNascimento
+            dataNascimento: data.dataNascimento,
+            bitResponsabilidade: data.bitResponsabilidade
         }
 
         const cliente = await clienteData.findOne({ where: { login: data.login }})

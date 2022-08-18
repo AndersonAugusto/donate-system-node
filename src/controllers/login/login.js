@@ -1,5 +1,5 @@
 'use strict'
-const clienteData = require('../../models/cadastro/cliente/clientes')
+const clienteData = require('../../models/cliente/clientes')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
