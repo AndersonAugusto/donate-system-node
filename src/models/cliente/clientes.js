@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize')
 const database = require('../../../database')
+const clienteEnderecoDB = require('../../models/cliente/clientes-endereco')
+const clienteContatoDB = require('../../models/cliente/clientes-contato')
+
 
 const clientes = database.define('clientes' , {
     idCliente: {
@@ -81,6 +84,14 @@ const clientes = database.define('clientes' , {
         defaultValue: 1
     }
 })
+
+clientes.hasOne(clienteEnderecoDB)
+clienteEnderecoDB.belongsTo(clientes)
+
+// clientes.belongsTo(clienteContatoDB , {
+//     constraint: true,
+//     foreignKey: 'idCliente'
+// })
 
 module.exports = clientes
 

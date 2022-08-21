@@ -1,19 +1,19 @@
 const Sequelize = require('sequelize')
 const database = require('../../../database')
 
-const estadoModel = database.define('estados' , {
-    idEstado: {
+const produtoFavoritoModel = database.define('produtoFavorito' , {
+    idFavorito: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    nomeEstado: {
+    idProduto: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    uf: {
-        type: Sequelize.STRING(50),
+    idCliente: {
+        type: Sequelize.INTEGER,
         allowNull: false
     },
     bitAtivo: {
@@ -22,5 +22,5 @@ const estadoModel = database.define('estados' , {
     }
 })
 
-module.exports = estadoModel
+module.exports = produtoFavoritoModel
 

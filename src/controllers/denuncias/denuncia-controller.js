@@ -1,8 +1,8 @@
 "use strict"
 
 const database = require('../../../database')
-const denuncias = require('../../models/denuncias/denuncias-cliente')
-const denunciasTipos = require('../../models/denuncias/tipo-denuncia')
+const denunciasDB = require('../../models/denuncias/denuncias-cliente')
+const denunciasTiposDB = require('../../models/denuncias/tipo-denuncia')
 
 const getDenuncias = async (req, res, next) => {
     try {

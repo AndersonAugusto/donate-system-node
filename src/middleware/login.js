@@ -4,7 +4,7 @@ require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
 
-exports.required = (req, res , next) => {
+exports.required = (req, res, next) => {
     try {
         const tokenHeader = req.headers['authorization']
         const token = tokenHeader && tokenHeader.split(' ')[1] 
@@ -18,6 +18,6 @@ exports.required = (req, res , next) => {
         next()
 
     } catch (error) {
-        return res.status(500).send({ error: error.message })
+        return res.status(500).send({ Message: 'Token expirado' , error: error.message })
     }
 }
