@@ -15,8 +15,6 @@ app.use(morgan('dev'))
 app.use(cors())
 
 db.sync() /* Atualiza DB */
-// db.sync({force: true}) /* Dropa e cria novamente o DB */
-// db.sync({alter: true}) /* Atualiza novas colunas se for inserido DB */
 
 const port = process.env.PORT || 3000
 

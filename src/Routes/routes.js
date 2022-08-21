@@ -6,6 +6,7 @@ const loginController = require('../controllers/login/login')
 const clienteController = require('../controllers/cliente/cliente-controller')
 const denunciaController = require('../controllers/denuncias/denuncia-controller')
 const trofeuController = require('../controllers/trofeu/trofeu-controller')
+const produtoController = require('../controllers/produtos/produtos-controller')
 
 router.get('/' , (req, res, next) =>  res.status(200).send({ message: 'Bem-vindo' }))
 
@@ -32,5 +33,12 @@ router.get('/trofeu' , required, trofeuController.getTrofeu)
 router.post('/trofeu' , required, trofeuController.insereTrofeu)
 router.put('/trofeu' , required, trofeuController.alteraTrofeu)
 router.delete('/trofeu' , required, trofeuController.deleteTrofeu)
+
+//trofeus
+router.get('/produtos' , required, produtoController.produtos)
+router.get('/produto' , required, produtoController.produto)
+router.post('/produto' , required, produtoController.insereProduto)
+router.put('/produto' , required, produtoController.alteraProduto)
+router.delete('/produto' , required, produtoController.deleteProduto)
 
 module.exports = router

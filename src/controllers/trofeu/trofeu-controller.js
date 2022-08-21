@@ -2,12 +2,12 @@
 
 const database = require('../../../database')
 const denuncias = require('../../models/denuncias/denuncias-cliente')
-const trofeusClienteModel = require('../../models/trofeu/trofeus-cliente')
-const trofeusModel = require('../../models/trofeu/trofeus')
-const infoTrofeuModel = require('../../models/trofeu/informacao-trofeu')
-const expTrofeuModel = require('../../models/trofeu/experiencia-trofeu')
-const logTrofeuModel = require('../../models/trofeu/log-trofeu')
-const categoriaProdutosModel = require('../../models/micros/categorias-produtos')
+const trofeusClienteDB = require('../../models/trofeu/trofeus-cliente')
+const trofeusDB = require('../../models/trofeu/trofeus')
+const infoTrofeuDB = require('../../models/trofeu/informacao-trofeu')
+const expTrofeuDB = require('../../models/trofeu/experiencia-trofeu')
+const logTrofeuDB = require('../../models/trofeu/log-trofeu')
+const categoriaProdutosDB = require('../../models/micros/categorias-produtos')
 
 const getTrofeus = async (req, res, next) => {
     try {
