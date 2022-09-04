@@ -8,10 +8,6 @@ const clienteContato = database.define('clienteContato' , {
         allowNull: false,
         primaryKey: true
     },
-    idCliente: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
     facebook: {
         type: Sequelize.STRING(50),
         allowNull: true

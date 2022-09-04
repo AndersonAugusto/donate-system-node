@@ -85,13 +85,15 @@ const clientes = database.define('clientes' , {
     }
 })
 
-clientes.hasOne(clienteEnderecoDB)
-clienteEnderecoDB.belongsTo(clientes)
+clienteEnderecoDB.belongsTo(clientes, {
+    constraint: true,
+    foreignKey: 'idCliente'
+})
 
-// clientes.belongsTo(clienteContatoDB , {
-//     constraint: true,
-//     foreignKey: 'idCliente'
-// })
+clienteContatoDB.belongsTo(clientes , {
+    constraint: true,
+    foreignKey: 'idCliente'
+})
 
 module.exports = clientes
 
