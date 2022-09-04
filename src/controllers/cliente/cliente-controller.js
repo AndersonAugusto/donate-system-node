@@ -1,6 +1,5 @@
 "use strict"
 
-const database = require('../../../database')
 const bcrypt = require('bcrypt');
 const clienteDB = require('../../models/cliente/clientes')
 const clienteEnderecoDB = require('../../models/cliente/clientes-endereco')
@@ -11,10 +10,35 @@ const permissaoDB = require('../../models/permissao/permissoes')
 
 const clientes = async (req, res, next) => {
     try {
+        
         const clientes = await clienteDB.findAll();
         
         return res.status(200).send({
-            clientes
+            clientes: clientes.map(cliente => {
+                return {
+                    idCliente: cliente.idCliente,
+                    login: cliente.login,
+                    senha: cliente.senha,
+                    token: cliente.token,
+                    nome: cliente.nome,
+                    IdPermissao: cliente.IdPermissao,
+                    cpf: cliente.cpf,
+                    email: cliente.email,
+                    telefone: cliente.telefone,
+                    genero: cliente.genero,
+                    dataNascimento: cliente.dataNascimento,
+                    fotoPerfil: cliente.fotoPerfil,
+                    saldoCarteira: cliente.saldoCarteira,
+                    sobreMim: cliente.sobreMim,
+                    necessidades: cliente.necessidades,
+                    dataCadastro: cliente.dataCadastro,
+                    bitUsuarioSeguro: cliente.bitUsuarioSeguro,
+                    bitResponsabilidade: cliente.bitResponsabilidade,
+                    bitAtivo: cliente.bitAtivo,
+                    createdAt: cliente.createdAt,
+                    updatedAt: cliente.updatedAt
+                }
+            })
         })
 
     }catch(error){
@@ -58,7 +82,7 @@ const insereCliente = async (req, res, next) => {
         const contato = req.body.cliente.contato
 
         if(!dadosCliente.senha || !dadosCliente.login){
-            return res.status(422).send({Message:'Login e senha são obrigatórios.'})
+            return res.status(422).send({ Message:'Login e senha são obrigatórios.' })
         }
 
         //CREATE HASH PASSWORD
@@ -137,6 +161,8 @@ const atualizaCliente = async (req, res, next) => {
         cliente.login = data.login
         cliente.senha = data.senha
         cliente.telefone = data.telefone
+        cliente.IdPermissao = data.idPermissao
+        cliente.nome = data.nome
         cliente.email = data.email
         cliente.cpf = data.cpf
         cliente.genero = data.genero
@@ -156,14 +182,12 @@ const atualizaCliente = async (req, res, next) => {
         await cliente.save()
         await endereco.save()
         await contato.save()
-        
 
         return res.status(200).send({
             message:'Cliente atualizado.',
             cliente, 
-            endereco ,
+            endereco,
             contato
-            
         })
 
     }catch(error){

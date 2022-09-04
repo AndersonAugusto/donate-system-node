@@ -8,10 +8,6 @@ const clienteEndereco = database.define('clienteEndereco' , {
         allowNull: false,
         primaryKey: true
     },
-    idCliente: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
     idCidade: {
         type: Sequelize.INTEGER,
         allowNull: true

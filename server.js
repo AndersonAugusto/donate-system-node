@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(cors())
 
-db.sync() /* Atualiza DB */
+db.sync(/* { force: true } */) /* Atualiza DB */
 
 const port = process.env.PORT || 3000
 
