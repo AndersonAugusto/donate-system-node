@@ -19,10 +19,13 @@ const login = async(req , res , next) => {
             return res.status(422).send({Message: 'Senha inválida'})
         }
         const token = jwt.sign({
-            id: idCliente
+            id: idCliente,
+            name: cliente.dataValues.nome,
+            photoPerfil: cliente.dataValues.fotoPerfil,
+            idPermissao: cliente.dataValues.idPermissao,
          }, process.env.SECRET , { expiresIn: '24h' })
 
-        return res.status(200).send({ Message: 'Logado com sucesso!', token });
+        return res.status(200).send({ Message: 'Bem vindo!', token });
         
     } catch(error) {
         return res.status(500).send({error: error.Message})
